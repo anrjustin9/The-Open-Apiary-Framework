@@ -1,1 +1,1 @@
-# The-Open-Apiary-Framework
+# The Open Apiary Framework
