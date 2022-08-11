@@ -68,3 +68,141 @@ Level zero apiary is the entry level tier which is designed to be easy to implem
 4. **Designed to detect attacks early in the cyber kill chain:** being foundational, this level is designed to deploy HoneyPots which can detect attacks early in the cyber kill chain, allowing for early detection and remediation of breaches.
 
 
+------------
+
+### Level 1 Apiary
+A Level one apiary maintains the detection and incident response capability of Level 0, while increasing the minimum Honeypot types. This level is designed to also be easy to implement, cost effective and provide clear security benefits.
+
+**a. Detection and Incident Response Capability and Maturity Prerequisites:** Initial to Ad-hoc/Repeatable (same as Level 0)
+
+**b. Honeypots: ** The Honeypots which can be implemented in this level are basic, build upon those which are detailed at a minimum in Level 0, and are applicable to external and internal:
+1. On-Prem:  This level combines honey systems with honey web applications, where at minimum one honey system type and one web application is required. 
+	2. **Honey Systems**:
+		3. External Facing Honey Systems
+		4. Internal Facing Honey Systems 
+	5. **Honey Web Applications**
+		6. External Facing
+		7. Internal Facing
+
+**c. Benefits:**
+1. **Basic and easy to implement HoneyPots:** This Apiary level is primarily geared towards expanding upon the easy-to-implement Honey Pots by incorporating an additional attack vector, web applications, which can be easily deployed on Honey Systems.
+2. ** Built-in monitoring and alerting:** This Apiary level leverages honeypots which have in-built monitoring capabilities, thus reducing setup and alerting requirements and further making it suitable for organizations with limited monitoring and incident response capabilities;
+3. **Foundational:** This Apiary level builds a foundation for where other HoneyPots can be deployed upon, as Honey Systems or Honey Web Applications can support various other types of Honey Pots e.g. Honey File.
+4. **Designed to detect attacks early in the cyber kill chain:** being foundational, this level is designed to deploy HoneyPots which can detect attacks early in the cyber kill chain, allowing for early detection and remediation of breaches.
+
+------------
+### Level 2 Apiary
+
+A Level 2 apiary increases the detection and incident response requirements to support the minimum types of honeypots effectively. This level is designed to incorporate cloud systems as well as provide support to organizations which consider data loss prevention as a priority.
+
+**a. Detection and Incident Response Capability and Maturity Prerequisites:** Defined detection and incident response capability and maturity is required to facilitate a Level 2 Apiary. This is characterized by processes which are defined, and strategically supported by technologies and skilled resources. In particular, the following are required at a minimum:
+1. **Processes:** Defined processes for preparing, responding and following up on incidents or alerts on the network, or from the HoneyPot. These processes are ideally documented and is there a standard procedure to follow for triage.
+2. **People:** Dedicated, skilled human resources are available to facilitate the incident response capabilities. Personnel who facilitate the incident response processes can share other responsibilities, however are dedicated to the organization’s incident response efforts.
+3. **Technology:** Technologies which provide basic centralized logging and security event correlation are implemented, in addition to technologies to support incident handling. 
+
+**b. Honeypots:** The honeypots which can be implemented at this level extend beyond the on-premise environment to the cloud, and integrate considerations for detecting data tampering at the file level.
+1. On-Prem:  This level combines honey systems with honey web applications, where at minimum one honey system type, one web application and one  honey file is required. 
+	2. Honey Systems:
+		3. External Facing Honey Systems
+		4. Internal Facing Honey Systems 
+	5. Honey Web Applications
+		6. External Facing
+		7. Internal Facing
+	8. Honey File
+9. Cloud:  This level adds considerations for the cloud, where at minimum one honey system or web application is required for implementation. This implementation is not applicable if cloud technologies are not in use. 
+	10. Honey Cloud Resource
+		11. External Facing
+
+**c. Benefits: **
+1. **Data protection considerations: **This Apiary level incorporates considerations for data protection through the incorporation of HoneyFiles to detect data access, modification, transmission or destruction.
+2. **Cloud detection considerations:** This Apiary level incorporates basic considerations for detecting cloud threats through the implementation of basic HoneyPots in the cloud. 
+3. **Cloud foundations:** This Apiary level incorporates cloud honey systems and honey web applications, which set the foundation for other cloud based honeypots e.g. honey file.
+
+------------
+### Level 3 Apiary
+A Level 3 apiary maintains the minimum detection and incident response capability of Level 2, however it is geared towards organizations at the higher end of the “Defined” capability. This level is designed to incorporate credentials and databases as part of the honeypot strategy to detect lateral movement as well as data loss at the data repository level.
+
+**a. Detection and Incident Response Capability and Maturity Prerequisites: **Defined (same as level 2);
+
+**b. Honeypots: **This level expands upon level 2 by adding honeypots designed to detect lateral movement and data loss at the database level.
+1. On-Prem:  This level combines honey systems with honey web applications, where at minimum one honey system type, one web application and one  honey file is required. 
+	2. Honey Systems:
+		3. External Facing Honey Systems
+		4. Internal Facing Honey Systems 
+	5. Honey Web Applications
+		6. External Facing
+		7. Internal Facing
+	8. Honey File
+	9. Honey Credential
+	10. Honey Repository
+11. Cloud:  This level adds considerations for the cloud, where at minimum one honey system or web application is required for implementation. This implementation is not applicable if cloud technologies are not in use. 
+	12. Honey Cloud Resource
+		13. External Facing
+		14. Honey Credential
+
+**c. Benefits:**
+1. **Additional data loss detection vectors:** This level expands upon the data protection considerations of the prior level by adding additional HoneyPots designed to detect data loss at the database level.
+2. **Lateral movement:** Detecting lateral movement is a key concern and indicator of compromise within an organization. This level adds starting HoneyPots to detect basic credential usage within the environment in order to identify lateral movement. This is particularly beneficial as it adds considerations for detection of malicious activity at the middle of the attack chain to compensate for where initial access is not detected.
+
+------------
+### Level 4 Apiary
+A Level 4 apiary increases the detection and incident response capability requirements to a minimum of management. This level is designed to incorporate user identities as part of the detection strategy and place additional reliance on technology and automation for incident response.
+
+**a. Detection and Incident Response Capability and Maturity Prerequisites:** Managed/Optimizing: This Apiary level sets the minimum requirement of Managed where processes and procedures are defined, tested for effectiveness and skilled resources are dedicated to incident response efforts. 
+1. Processes: Processes for preparing, responding and following up on incidents or alerts on the network, or from the HoneyPot are defined and regularly tested for effectiveness and improved upon.
+2. People: Dedicated, skilled human resources are available to facilitate the incident response capabilities and effectiveness is measured and tracked.
+3. Technology: Detection and incident response technologies are implemented in a structured manner to detect and respond to incidents. These technologies are regularly tested for effectiveness and improved upon.
+
+**b. Honeypots:** This level expands upon Level 3 by adding additional honeypots designed to detect lateral movement.
+1. On-Prem:  This level combines honey systems with honey web applications, where at minimum one honey system type, one web application and one  honey file is required. 
+	2. Honey Systems:
+		3. External Facing Honey Systems
+		4. Internal Facing Honey Systems 
+	5. Honey Web Applications
+		6. External Facing
+		7. Internal Facing
+	8. Honey File
+	9. Honey Credential
+	10. Honey Repository
+	11. Honey User Identity
+12. Cloud:  This level adds considerations for the cloud, where at minimum one honey system or web application is required for implementation. This implementation is not applicable if cloud technologies are not in use. 
+	13. Honey Cloud Resource
+		14. External Facing
+	15. Honey Cloud Credential
+	16. Honey Cloud User Identity
+
+**c. Benefits:**
+1. **Additional lateral movement considerations: **This level focuses on expanding HoneyPots designed at detecting additional types of lateral movement in the environment.
+
+------------
+### Level 4 Apiary
+A Level 5 apiary miantians the same level of detection and incident response capability requirement as level 4 (managed). This level is designed to incorporate minor expansions to the honeypot requirements over Level 4.
+
+**a. Detection and Incident Response Capability and Maturity Prerequisites:** Managed/Optimizing: (same as Level 4)
+
+**b. Honeypots:** This level expands upon Level 4 by adding additional honeypots designed to detect lateral movement.
+1. On-Prem:  This level combines honey systems with honey web applications, where at minimum one honey system type, one web application and one  honey file is required. 
+	2. Honey Systems:
+		3. External Facing Honey Systems
+		4. Internal Facing Honey Systems 
+	5. Honey Web Applications
+		6. External Facing
+		7. Internal Facing
+	8. Honey File
+	9. Honey Credential
+	10. Honey Repository
+	11. Honey User Identity
+	12. Honey Service Identity
+13. Cloud:  This level adds considerations for the cloud, where at minimum one honey system or web application is required for implementation. This implementation is not applicable if cloud technologies are not in use. 
+	14. Honey Cloud Resource
+		15. External Facing
+		16. Internal Facing
+	17. Honey Cloud Credential
+	18. Honey Cloud User Identity
+	19. Honey Cloud Service Identity
+
+**c. Benefits:**
+1. **Additional lateral movement considerations:** This level focuses on expanding HoneyPots designed at detecting additional types of lateral movement in the environment.
+
+
+
