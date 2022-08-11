@@ -210,11 +210,11 @@ A Level 5 apiary miantians the same level of detection and incident response cap
 Honey systems are operating systems (virtual or physical) which sit on either the boundary of a network (external facing) or within the network (internal facing). These systems are characterized by the following:
 **General Descriptors: **
 2. **Enticement: **These systems are enticing to attackers as they are easily detected on the network through port scans, IP directories or Active Directory. Enticement can be improved by performing the following:
-	3. Naming: changing the name of the systems to one which mimics a critical asset e.g. file server, database server or domain controller within the organization. Enticements which rely on naming conventions should, to the maximum extent possible, leverage organizational information to increase enticement. 
-	4. IP Assignment: assignment of IP addresses which are low in range (e.g. 10.10.10.5) to increase detectability and visibility at the network level to entice attackers.
-	5. Active Directory: special assignments to groups (e.g. jump server group, IT workstations group) or attributes on the Active Directory to increase visibility. 
-	6. Vulnerabilities and Misconfigurations: basic misconfigurations or vulnerabilities on the system which are easily detectable and exploitable by an attacker, but which the detection and exploitation is easily detectable by the defender. 
-	7. Network Services: services installed on the system which expose unusual services running on usual port assignments.
+	3. **Naming**: changing the name of the systems to one which mimics a critical asset e.g. file server, database server or domain controller within the organization. Enticements which rely on naming conventions should, to the maximum extent possible, leverage organizational information to increase enticement. 
+	4. **IP Assignment**: assignment of IP addresses which are low in range (e.g. 10.10.10.5) to increase detectability and visibility at the network level to entice attackers.
+	5. **Active Directory**: special assignments to groups (e.g. jump server group, IT workstations group) or attributes on the Active Directory to increase visibility. 
+	6. **Vulnerabilities and Misconfigurations**: basic misconfigurations or vulnerabilities on the system which are easily detectable and exploitable by an attacker, but which the detection and exploitation is easily detectable by the defender. 
+	7. **Network Services:** services installed on the system which expose unusual services running on usual port assignments.
 8. **Security:** These systems, while enticing, are secured and compromise of the system would not compromise the confidentiality, integrity and availability of other systems on the network. The security of these systems can be maintained through the implementation of the organization’s security stack which should, at the minimum, include the following:
 	9. Anti-malware
 	10. System Hardening
@@ -234,9 +234,9 @@ Honey systems are operating systems (virtual or physical) which sit on either th
 Honey web applications (external and internal) are web applications which are intentionally designed to be enticing to threat actors which target web applications. 
 **General Descriptors:**
 1. **Enticement:** These systems are enticing to attackers as, like with honey systems, are easily detected on networks through port scans or through Active Directory. 
-	2. IP Address: assignment of IP addresses which are low in range (e.g. 10.10.10.5) to increase detectability and visibility at the network level to entice attackers.
-	3. Ports: use of standard, commonly used web application ports increase the discoverability of the web application;
-	4. Web Application Design: use of enticing web application designs such as those with login pages or those which allude to the storage of confidential information;
+	2. **IP Address:** assignment of IP addresses which are low in range (e.g. 10.10.10.5) to increase detectability and visibility at the network level to entice attackers.
+	3. **Ports: **use of standard, commonly used web application ports increase the discoverability of the web application;
+	4. **Web Application Design:** use of enticing web application designs such as those with login pages or those which allude to the storage of confidential information;
 5. **Security: **These web applications should maintain a particular level of security not store information or be configured in such a way that it poses a risk to the rest of the environment. Security controls should at a minimum include:
 	6. Web Application Request Filtering
 7. **Recoverable: **Recovery mechanisms should be established to recover the web application source files, and databases where applicable.
@@ -267,7 +267,7 @@ Honey credentials are usernames and passwords/hashes which are intentionally lef
 Enticements should be focused on crafting the credential to resemble either system, database or network credentials to reduce the 
 5. **Security:** These credentials should not actually possess privileges, and instead should be either disabled or non-existent within the environment. This also aids in monitoring as often operating systems and databases can generate audit logs for denied logins natively.
 6. **Recoverable:** Mechanisms should be put in place to restore the credential information to its original state where it to be tampered with.
-7.** Not Resource Intensive:** Maintaining the credential and monitoring its use should not consume extensive resources.
+7. ** Not Resource Intensive:** Maintaining the credential and monitoring its use should not consume extensive resources.
 8. **Monitored:** Monitoring of the use of the credential can be implemented based on the enticement used and be done at the respective levels to detect denied logins.
 
 #### 1.5 On-Premise | Honey Repositories
