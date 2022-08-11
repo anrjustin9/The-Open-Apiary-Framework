@@ -175,7 +175,7 @@ A Level 4 apiary increases the detection and incident response capability requir
 1. **Additional lateral movement considerations: **This level focuses on expanding HoneyPots designed at detecting additional types of lateral movement in the environment.
 
 ------------
-### Level 4 Apiary
+### Level 5 Apiary
 A Level 5 apiary miantians the same level of detection and incident response capability requirement as level 4 (managed). This level is designed to incorporate minor expansions to the honeypot requirements over Level 4.
 
 **a. Detection and Incident Response Capability and Maturity Prerequisites:** Managed/Optimizing: (same as Level 4)
@@ -204,5 +204,209 @@ A Level 5 apiary miantians the same level of detection and incident response cap
 **c. Benefits:**
 1. **Additional lateral movement considerations:** This level focuses on expanding HoneyPots designed at detecting additional types of lateral movement in the environment.
 
+## The HoneyPots 
 
+#### 1.1 On-Premise | Honey Systems
+Honey systems are operating systems (virtual or physical) which sit on either the boundary of a network (external facing) or within the network (internal facing). These systems are characterized by the following:
+**General Descriptors: **
+2. **Enticement: **These systems are enticing to attackers as they are easily detected on the network through port scans, IP directories or Active Directory. Enticement can be improved by performing the following:
+	3. Naming: changing the name of the systems to one which mimics a critical asset e.g. file server, database server or domain controller within the organization. Enticements which rely on naming conventions should, to the maximum extent possible, leverage organizational information to increase enticement. 
+	4. IP Assignment: assignment of IP addresses which are low in range (e.g. 10.10.10.5) to increase detectability and visibility at the network level to entice attackers.
+	5. Active Directory: special assignments to groups (e.g. jump server group, IT workstations group) or attributes on the Active Directory to increase visibility. 
+	6. Vulnerabilities and Misconfigurations: basic misconfigurations or vulnerabilities on the system which are easily detectable and exploitable by an attacker, but which the detection and exploitation is easily detectable by the defender. 
+	7. Network Services: services installed on the system which expose unusual services running on usual port assignments.
+8. **Security:** These systems, while enticing, are secured and compromise of the system would not compromise the confidentiality, integrity and availability of other systems on the network. The security of these systems can be maintained through the implementation of the organization’s security stack which should, at the minimum, include the following:
+	9. Anti-malware
+	10. System Hardening
+	11. Changing default passwords
+	12. Reducing connections to other systems on the network
+
+14. **Recoverable:** Backup and recovery mechanisms do not necessarily need to follow the standard organizational backup and recovery procedures, however a backup of the initial state which includes setup and configuration should be retained and used to restore the systems to a honeypot state upon compromise. This can also be accomplished by snapshots on both Linux and Microsoft Windows systems.
+
+16. **Not Resource Intensive:** Honey systems should not require exorbitant amounts of computing power to run and as such, these systems should be minimal and deployed only for purpose. Further to this, it should require low to medium interaction from the owner.
+
+18. **Monitored: **These systems may have integrated logging and alerting capabilities which can be leveraged as a stand-alone solution or can feed into centralized event logging systems. Monitoring can include the following:
+	19. **General - Operating System Event Logs:** event logs such as Windows Event Logs and Syslogs can be collected and analyzed. Alerts should be configured to trigger upon event logs which detect user activity such as sign on or launching of new applications/processes.
+	20. **Specific - Network Connections: **monitoring of network connections to and from the machine can be implemented to detect potential malicious activity as well as command-and-control activity.
+	21. **Specific - Operating System Integrity:** changes in operating system integrity such as changes to user accounts or operating system files can be implemented to detect malicious activity.
+
+#### 1.2 On-Premise | Honey Web Applications
+Honey web applications (external and internal) are web applications which are intentionally designed to be enticing to threat actors which target web applications. 
+**General Descriptors:**
+1. **Enticement:** These systems are enticing to attackers as, like with honey systems, are easily detected on networks through port scans or through Active Directory. 
+	2. IP Address: assignment of IP addresses which are low in range (e.g. 10.10.10.5) to increase detectability and visibility at the network level to entice attackers.
+	3. Ports: use of standard, commonly used web application ports increase the discoverability of the web application;
+	4. Web Application Design: use of enticing web application designs such as those with login pages or those which allude to the storage of confidential information;
+5. **Security: **These web applications should maintain a particular level of security not store information or be configured in such a way that it poses a risk to the rest of the environment. Security controls should at a minimum include:
+	6. Web Application Request Filtering
+7. **Recoverable: **Recovery mechanisms should be established to recover the web application source files, and databases where applicable.
+8. **Not Resource Intensive:** The web application should not require substantive computing resources and should require low to medium interaction from the owner.
+9. **Monitored: **Logging and monitoring can be implemented at the web server layer which serves the web application as these software often have integrated logging capabilities and can feed into centralized log collection systems. Monitoring can include the following:
+	10. **General - Web Server Logs:** event logs such as Windows Event Logs and Syslogs can be collected and analyzed. Alerts should be configured to trigger upon event logs which detect user activity such as sign on or launching of new applications/processes.
+	11. **Specific - Application Logs:** Logging at the web application layer can also be performed, however this may require the web application to be designed to support logging and monitoring. 
+
+#### 1.3 On-Premise | Honey Files
+Honey files are data files which are crafted to be enticing to attackers, however do not contain data which can harm the organization.
+**General Descriptors:**
+1. **Enticement: **These files are enticing to attackers who seek sensitive information which can be used to extort the organization, or further compromise the environment: 
+	2. Location: placing the file on exposed locations such as shared drives or document management systems;
+	3. Naming: use of naming schemes which allude to the presence of sensitive information such as PII or credentials;
+	4. File Type: use of common file types which do not support encryption such as flat files or Office documents.
+5. **Security:** These files should not contain sensitive information which can pose a security risk. 
+6. **Recoverable:** Recovery mechanisms should be established to recover or restore the file to its original state.
+7. **Not Resource Intensive: **The file and its monitoring process should not require extensive computing resources such as space or processing power.
+8. **Monitored:** Logging and monitoring can be implemented through the use of File Integrity Monitoring (FIM) solutions to detect changes or file access where the objective is to determine whether the file was accessed. Where the objective is to detect data loss, FIM can be combined with network monitoring tools to detect file transfers, and can be enhanced through event correlation engines.
+
+#### 1.4 On-Premise | Honey Credentials
+Honey credentials are usernames and passwords/hashes which are intentionally left exposed for attackers to stumble upon and attempt to leverage to elevate access or move laterally on the network.
+
+**General Descriptors:**
+1. **Enticement:** These credentials are enticing to attackers who seek to elevate access or move laterally on the network. Enticements can be in the following categories: 
+	2. **Naming:** using keywords which allude to elevated permissions e.g. admin, superuser on databases, the local system or the network;
+	3. **Location:** the placement of these credentials in locations which are easily accessed or exposed e.g. shared drives, SYSVOL etc;
+Enticements should be focused on crafting the credential to resemble either system, database or network credentials to reduce the 
+5. **Security:** These credentials should not actually possess privileges, and instead should be either disabled or non-existent within the environment. This also aids in monitoring as often operating systems and databases can generate audit logs for denied logins natively.
+6. **Recoverable:** Mechanisms should be put in place to restore the credential information to its original state where it to be tampered with.
+7.** Not Resource Intensive:** Maintaining the credential and monitoring its use should not consume extensive resources.
+8. **Monitored:** Monitoring of the use of the credential can be implemented based on the enticement used and be done at the respective levels to detect denied logins.
+
+#### 1.5 On-Premise | Honey Repositories
+Honey Repositories are collections of data such as database instances, sharepoint instances or code repositories which are intentionally exposed for attackers to target.
+**General Descriptors:**
+1. **Enticement:** Repositories are appealing to attackers as they may contain sensitive information which can be exfiltrated. Enticements can be in the following categories: 
+	2. **Naming:** utilizing keywords which allude to the storage of sensitive information;
+	3. **Vulnerabilities and Misconfigurations: **common vulnerabilities and misconfigurations which are considered to be “low hanging fruit”;
+4. **Security:** These repositories should not contain sensitive data and instead at a minimum contain test or dummy data. Further to this, the database instance should at minimum be hardened (with select misconfigurations for enticement e.g. default credentials) to reduce the risk of compromise of the underlying operating system;
+5. **Recoverable:** Mechanisms should be put in place to restore the repository and its configuration to the original state were it to be changed by a threat actor.
+6. **Not Resource Intensive:** The repository instance nor its monitoring mechanisms should not consume excessive compute resources.
+7. **Monitored:** Repository software often supports auditing and logging and as such monitoring of the database logs for access can be implemented to detect malicious activity.
+
+#### 1.6 On-Premise | Honey Repositories
+Honey user identities are identities registered with identity and access management solutions (e.g Active Directory) and are designed to be enticing to attackers and detect attempts to abuse the identity. It is different from a Honey Credential which may not exist on any system.
+
+**General Descriptors:**
+1. **Enticement:** User identities appeal to attackers as they may have access to sensitive information on the network or can be abused as part of business email compromise attacks. 
+	2.** User Naming:** Utilizing standard naming conventions;
+	3. **User Groups: **Placing the user identities within groups which designate it as high value targets e.g. Finance, IT etc.
+	4. **Security Exceptions: **Applying security exceptions to the identity which are visible on the identity and access management solution e.g.. DoNotRequirePreAuth on Active Directory;
+	5. **Access Control Lists and Permissions:** Applying special access controls and permissions to the account which are visible on the identity and access management solution.
+6. **Security:** These identities should have restrictions which prohibit its use to reduce the risk of abuse of the identity. Further to this, enticements should give the appearance of elevated or sensitive access, while not effectively giving access. 
+7. **Recoverable:** Mechanisms should be established to restore the identity and its respective enticements to the original state were it to be modified by an attacker.
+8. **Not Resource Intensive:** Maintaining the identity and its enticements should not consume excessive resources on the identity and access management solutions e.g  Office365.
+9. **Monitored:** Identity and access management solutions often have native logging and auditing capabilities, which can be integrated with motoring and security event management solutions for monitoring of the use of the credential.
+
+#### 1.7 On-Premise | Honey Service Identities
+Honey service identities are identities which enable network services registered with identity and access management solutions (e.g Active Directory) and are designed to be enticing to attackers and detect attempts to abuse the identity. It is different from a Honey Credential which may not exist on any system and different from a user identity whereby enticements are crafted to give the appearance of a service account.
+**General Descriptors:**
+1. **Enticement:** Service identities appeal to attackers as they may have access to sensitive services on the network or can be abused as part of lateral movement attempts. To increase the enticement of these . 
+	2. **Account Naming:** Utilizing standard naming conventions for service accounts;
+	3. **Account Groups:** Placing the service identities within groups which designate it as high value targets e.g. Service Accounts.
+	4. **Security Exceptions:** Applying security exceptions to the identity which are visible on the identity and access management solution e.g.. Configuring a Service Principal Name on Active Directory;
+	5. **Access Control Lists and Permissions:** Applying special access controls and permissions to the account which are visible on the identity and access management solution.
+6. **Security:** These identities should have restrictions which prohibit its use to reduce the risk of abuse of the identity. Further to this, enticements should give the appearance of elevated or sensitive access, while not effectively giving access. 
+7. **Recoverable:** Mechanisms should be established to restore the identity and its respective enticements to the original state were it to be modified by an attacker.
+8. **Not Resource Intensive:** Maintaining the identity and its enticements should not consume excessive resources on the identity and access management solutions e.g  Office365.
+9. **Monitored:** Identity and access management solutions often have native logging and auditing capabilities, which can be integrated with motoring and security event management solutions for monitoring of the use of the credential.
+
+
+#### 2.1 The Cloud | Honey Cloud Identities
+Honey identities are identities registered with cloud identity and access management solutions (e.g Azure Active Directory) and are designed to be enticing to attackers and detect attempts to abuse the identity. Within cloud services, there are various classes of identities, which honeypots are described for in the preceding sections.
+
+##### 2.1.1 The Cloud | Honey Cloud User Identities
+Honey user identities are cloud identities related to a specific human user, and are designed to be enticing to attackers and detect attempts to abuse the human identity. 
+**General Descriptors:**
+1. **Enticement:** User identities appeal to attackers as they may have access to sensitive information on the network or can be abused as part of business email compromise attacks. 
+	2. **User Naming**: Utilizing standard naming conventions;
+	3. **User Groups**: Placing the user identities within groups which designate it as high value targets e.g. Finance, IT etc.
+	4. **Security Exceptions**: Applying security exceptions to the identity which are visible on the identity and access management solution 
+	5. **Access Control Lists and Permissions**: Applying special access controls and permissions to the account which are visible on the identity and access management solution.
+6. **Security**: These identities should have restrictions which prohibit its use to reduce the risk of abuse of the identity. Further to this, enticements should give the appearance of elevated or sensitive access, while not effectively giving access. 
+7. **Recoverable:** Mechanisms should be established to restore the identity and its respective enticements to the original state were it to be modified by an attacker.
+8. **Not Resource Intensive**: Maintaining the identity and its enticements should not consume excessive resources on the identity and access management solutions e.g  Office365.
+9. **Monitored: **Identity and access management solutions often have native logging and auditing capabilities, which can be integrated with motoring and security event management solutions for monitoring of the use of the credential.
+
+##### 2.1.1 The Cloud | Honey Cloud Service Identities
+Honey service identities are identities which enable network services registered with identity and access management solutions (e.g Azure Active Directory) and are designed to be enticing to attackers and detect attempts to abuse the identity. It is different from a Honey Cloud User identity as it is specifically registered as a cloud service account.
+**General Descriptors:**
+1. **Enticement:** Service identities appeal to attackers as they may have access to sensitive services on the network or can be abused as part of lateral movement attempts. To increase the enticement of these . 
+	2. **Account Naming:** Utilizing standard naming conventions for service accounts;
+	3. **Account Groups: **Placing the service identities within groups which designate it as high value targets e.g. Service Accounts.
+	4. **Security Exceptions: **Applying security exceptions to the identity which are visible on the cloud identity and access management solution.
+	5. **Access Control Lists and Permissions:** Applying special access controls and permissions to the account which are visible on the identity and access management solution.
+6. **Security**: These identities should have restrictions which prohibit its use to reduce the risk of abuse of the identity. Further to this, enticements should give the appearance of elevated or sensitive access, while not effectively giving access. 
+7. **Recoverable**: Mechanisms should be established to restore the identity and its respective enticements to the original state were it to be modified by an attacker.
+8. **Not Resource Intensive: **Maintaining the identity and its enticements should not consume excessive resources on the identity and access management solutions e.g  Office365.
+9. **Monitored:** Identity and access management solutions often have native logging and auditing capabilities, which can be integrated with motoring and security event management solutions for monitoring of the use of the credential.
+
+#### 2.2 The Cloud | Honey Cloud Resources
+Honey cloud resources are those cloud services which are designed to be enticing to attackers and detect attempts to utilize the resource in an unexpected or malicious way. Resources in this section are generalized to maximize compatibility across various cloud infrastructure providers.
+**General Descriptors:**
+1. **Enticement:** Cloud resources appeal to attackers as they may contain sensitive data, or be leveraged to pivot across the environment. To increase the enticement of these . 
+	2. **Resource Naming: **Utilizing standard resource naming conventions for cloud resources;
+	3. **Resource Type:** Resources such as key stores and data stores are more enticing to attackers. 
+4. **Security**: These resources should not contain or store sensitive information, or be linked to other resources, as to reduce the likelihood of lateral movement across the cloud. Enticements should give the appearance of sensitivity, while not being sensitive.
+5. **Recoverable**: Mechanisms should be established to restore the resource and its respective enticements to the original state were it to be modified by an attacker.
+6. **Not Resource Intensive:** Maintaining the resource and its enticements should not consume excessive resources on the cloud platform.
+7. **Monitored**: Cloud resources often have logging at both the management pane and at the data pane. The appropriate pane should be selected and monitored for unauthorized or unusual activity.
+
+
+
+------------
+
+## The HoneyPot Return-on-Investment Methodology
+ROI is the ratio between the reduction in daily cost of an attacker dwelling on the network to the daily cost of an attacker dwelling prior to honeypots being implemented.
+
+- Cost of Breach Before (CB1): The average cost of a breach prior to the honeypots being implemented. This includes remediation costs, litigation costs and regulatory costs
+- Dwell Time Before (DT1): The average dwell time prior to honeypots being implemented.
+- Daily Cost of an Attacker on the network before (CA1): 
+- Cost of Implementation (COI): The cost to implement and maintain the honeypots on the network
+- Dwell Time After (DT2): The average dwell time after the honeypots have been implemented or the target dwell time based on defined KPIs for the project.
+- Delta Dwell Time (DT3): The difference in average dwell times.
+- Cost of Breach After (CB2): The cost of breach after the implementation of Honeypots
+- Daily Cost of an Attacker on the network after (CA2): the daily loss incurred when an attacker is on the network.
+
+### Calculating Return on Investment
+1. Calculate the cost of an attacker on the network before honeypots have been implemented
+`	CA1 = CB1 DT1 `
+3. Calculate the change in dwell time
+`DT3 = DT1 - DT2 `
+5. Calculate the cost of breach after honeypots have been implemented
+`CB2 = COI +(DT3 CA1) `
+7. Calculate the cost of an attacker on the network after honeypots have been implemented
+`CA2 = CB2 / DT3 `
+9. Calculate ROI:
+`ROI = (CA1 - CA2) / CA1`
+
+**Example:**
+Assuming the following:
+- CB1 = $50,000 
+- DT1 = 30 days
+- COI = $5,000
+- DT2 = 10 days
+
+1. Calculate the cost of an attacker on the network before honeypots have been implemented
+`CA1 = CB1 / DT1 `
+`CA1 = $50,00030`
+`CA1 =  $1,667`
+2. Calculate the change in dwell time
+`DT3 = DT1 - DT2 `
+`DT3 = 30- 10`
+`DT3 = 20`
+3. Calculate the cost of breach after honeypots have been implemented
+`CB2 = COI +(DT3 CA1) `
+`CB2 = $5000+(20 $1,667) `
+`CB2 = $21,667`
+4. Calculate the cost of an attacker on the network after honeypots have been implemented
+`CA2 = CB2 / DT3` 
+`CA2 = $21,667 / 20`
+`CA2 =  $1,083 `
+5. Calculate ROI:
+`ROI = (CA1 - CA2) / CA1`
+`ROI = ($1,667 - $1,083) / $1,667`
+`ROI = 0.35	`
+
+
+## References
+Clarke, M. (2012). The Digital Revolution. In Academic and Professional Publishing (pp. 79-98). Chandos Publishing. https://doi.org/10.1016/B978-1-84334-669-2.50004-4
+Nayyar, S. (2021, 4 3). Why The Dwell Time Of Cyberattacks Has Not Changed. Forbes. Retrieved 11 2, 2021, from https://www.forbes.com/sites/forbestechcouncil/2021/05/03/why-the-dwell-time-of-cyberattacks-has-not-changed/?sh=6f37b473457d
 
